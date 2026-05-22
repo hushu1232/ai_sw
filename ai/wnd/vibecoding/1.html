@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生日贺卡生成器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* 喜庆标题样式 */
+        .main-title {
+            text-align: center;
+            color: #ff2e63;
+            font-size: 42px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            margin: 20px 0 40px;
+            font-weight: bold;
+            background: -webkit-linear-gradient(#ff2e63, #ff9a9e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .container {
+            display: flex;
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: flex-start;
+        }
+
+        /* 左侧表单区域 */
+        .form-section {
+            flex: 1;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 20px;
+        }
+
+        .form-title {
+            color: #ff2e63;
+            margin-bottom: 25px;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ff9a9e;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: #ff2e63;
+        }
+
+        .generate-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(to right, #ff2e63, #ff5e8a);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 10px;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* 右侧贺卡展示区域 */
+        .cards-section {
+            flex: 1.5;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* 生日贺卡样式 */
+        .birthday-card {
+            background: #fff8f0;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            border: 3px solid #ffd700;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .birthday-card::before {
+            content: "🎂";
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 30px;
+        }
+
+        .card-message {
+            font-size: 20px;
+            line-height: 1.8;
+            color: #333;
+            text-align: center;
+        }
+
+        .card-name {
+            color: #ff2e63;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .card-age {
+            color: #ff5e8a;
+            font-weight: bold;
+        }
+
+        .card-hobby {
+            color: #4ecdc4;
+            font-weight: bold;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .main-title {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="main-title">🎉 超有趣生日贺卡生成器 🎉</h1>
+    
+    <div class="container">
+        <!-- 左侧输入表单 -->
+        <div class="form-section">
+            <h2 class="form-title">制作你的专属贺卡</h2>
+            <div class="input-group">
+                <label for="name">姓名：</label>
+                <input type="text" id="name" placeholder="请输入对方姓名" required>
+            </div>
+            <div class="input-group">
+                <label for="age">年龄：</label>
+                <input type="number" id="age" placeholder="请输入年龄" required>
+            </div>
+            <div class="input-group">
+                <label for="hobby">爱好：</label>
+                <input type="text" id="hobby" placeholder="请输入爱好" required>
+            </div>
+            <button class="generate-btn" onclick="generateCard()">生成生日贺卡</button>
+        </div>
+
+        <!-- 右侧贺卡展示区 -->
+        <div class="cards-section" id="cardsContainer">
+            <!-- 生成的贺卡会在这里展示 -->
+        </div>
+    </div>
+
+    <script>
+        function generateCard() {
+            // 获取输入值
+            const name = document.getElementById('name').value.trim();
+            const age = document.getElementById('age').value.trim();
+            const hobby = document.getElementById('hobby').value.trim();
+
+            // 验证输入
+            if(!name || !age || !hobby) {
+                alert('请填写完整信息！');
+                return;
+            }
+
+            // 祝福语数组（随机选择）
+            const messages = [
+                `祝<span class="card-name">${name}</span> <span class="card-age">${age}</span> 岁生日快乐！愿你每天都能开心地做自己喜欢的<span class="card-hobby">${hobby}</span>，永远快乐无忧！🎂`,
+                `亲爱的<span class="card-name">${name}</span>，恭喜迎来<span class="card-age">${age}</span> 岁！愿你的<span class="card-hobby">${hobby}</span>技能越来越棒，生日超快乐！✨`,
+                `<span class="card-name">${name}</span> <span class="card-age">${age}</span> 岁生日快乐！希望<span class="card-hobby">${hobby}</span>带给你无限快乐，天天都有好心情！🎈`,
+                `祝最可爱的<span class="card-name">${name}</span>生日快乐！<span class="card-age">${age}</span> 岁是最美好的年纪，尽情享受<span class="card-hobby">${hobby}</span>的乐趣吧！🎁`
+            ];
+
+            // 随机选择一条祝福语
+            const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+
+            // 创建贺卡元素
+            const card = document.createElement('div');
+            card.className = 'birthday-card';
+            card.innerHTML = `<p class="card-message">${randomMsg}</p>`;
+
+            // 将新贺卡添加到容器底部
+            document.getElementById('cardsContainer').appendChild(card);
+
+            // 清空输入框
+            document.getElementById('name').value = '';
+            document.getElementById('age').value = '';
+            document.getElementById('hobby').value = '';
+        }
+    </script>
+</body>
+</html>
