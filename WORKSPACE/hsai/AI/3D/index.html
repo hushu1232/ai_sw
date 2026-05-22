@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D 小世界编辑器</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="three-container"></div>
+
+  <div id="top-panel">
+    <h1>3D 小世界</h1>
+    <div id="save-panel">
+      <select id="save-slot">
+        <option value="0">存档 1</option>
+        <option value="1">存档 2</option>
+        <option value="2">存档 3</option>
+      </select>
+      <button id="btn-reset">重置</button>
+      <button id="btn-clear">清空</button>
+    </div>
+  </div>
+
+  <div id="tool-bar"></div>
+
+  <canvas id="minimap-canvas" width="128" height="128"></canvas>
+
+  <div id="tutorial-overlay">
+    <div class="tutorial-content">
+      <h2>操作提示</h2>
+      <p>拖拽旋转视角 &nbsp;|&nbsp; 滚轮缩放 &nbsp;|&nbsp; 点击放置元素</p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

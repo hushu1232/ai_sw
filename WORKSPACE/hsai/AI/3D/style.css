@@ -1,0 +1,220 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f5f0e8;
+  font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", sans-serif;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#three-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+#three-container canvas {
+  display: block;
+}
+
+/* ========== Top Panel ========== */
+#top-panel {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 10px 20px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+#top-panel h1 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #3a3a3a;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+}
+
+#save-panel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#save-slot {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+  color: #3a3a3a;
+  cursor: pointer;
+  outline: none;
+  font-family: inherit;
+}
+
+#save-slot:focus {
+  border-color: #7ec850;
+}
+
+#btn-reset,
+#btn-clear {
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+  color: #3a3a3a;
+  cursor: pointer;
+  transition: background 0.15s;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+#btn-reset:hover,
+#btn-clear:hover {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+#btn-reset:active,
+#btn-clear:active {
+  background: rgba(200, 200, 200, 0.8);
+}
+
+/* ========== Tool Bar ========== */
+#tool-bar {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 18px;
+  padding: 8px 10px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.tool-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.15s;
+  gap: 2px;
+}
+
+.tool-btn:hover {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.tool-btn.active {
+  background: rgba(126, 200, 80, 0.2);
+  border-color: #7ec850;
+  box-shadow: 0 0 8px rgba(126, 200, 80, 0.25);
+}
+
+.tool-btn .emoji {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.tool-btn .label {
+  font-size: 10px;
+  color: #5a5a5a;
+  line-height: 1;
+}
+
+/* ========== Minimap ========== */
+#minimap-canvas {
+  position: fixed;
+  bottom: 120px;
+  right: 20px;
+  z-index: 10;
+  width: 128px;
+  height: 128px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  image-rendering: auto;
+}
+
+/* ========== Tutorial Overlay ========== */
+#tutorial-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: opacity 0.8s ease-out;
+  opacity: 1;
+  pointer-events: none;
+}
+
+#tutorial-overlay.fade-out {
+  opacity: 0;
+}
+
+.tutorial-content {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 20px;
+  padding: 32px 40px;
+  text-align: center;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.tutorial-content h2 {
+  font-size: 22px;
+  color: #3a3a3a;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.tutorial-content p {
+  font-size: 15px;
+  color: #5a5a5a;
+  line-height: 1.6;
+}
