@@ -33,4 +33,21 @@
     ls
 
     文件 1：n 文件版本（快照）
+-git status
+    常用，做任何git 操作前，
+    明确仓库当前状态
+-git add readme.md
+    readme.md 文件 untracked
+    将一个**未被仓库跟踪**的文件，添加到**暂存区（stage）**
+    to be commit 待提交
+-git commit -m 'wrote a readme file'
+    储存到了。git 仓库中，有了第一个快照
+    2 insertions 新增内容2行
+Git 全局设置:
+git config --global user.name "hushu"
+git config --global user.email "3045846738@qq.com"
+    gitee证件
 
+# repo
+-remote origin 远程源
+-git push origin master/main
