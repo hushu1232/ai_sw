@@ -34,5 +34,16 @@ NLP 实验
 - LLM厂商
 Openai 基于Google 开源的**transform** 架构，引领了22年底的生成式人工智能浪潮 ，业内标准
 deepseek 兼容openai 
-gemini(google),claude (Anthropic) 有些区别  
+gemini(google),claude (Anthropic) 有些区别 
 
+## Completion 接口
+
+## Prompt 
+- 清晰且详细的表达目标
+    amazon 细化
+- 分步骤
+1，2，3 
+- 约束下llm 返回内容的格式
+json 格式
+有利于接下来的操作
+字段名字清晰指定

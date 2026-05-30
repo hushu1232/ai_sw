@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+// 编译阶段 准备好作用域 global{showName(), myName }
+showName();
+console.log(myName);
+var muName = '梦甜';
+function showName() {
+  // 编译阶段二，为showName 执行而准备
+  var a = 1;
+  console.log('函数ShowName被执行了')
+}
+</script>
+</body>
+</html>
