@@ -1,5 +1,5 @@
 {
-  "name": "demo1",
+  "name": "demo2",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,9 +9,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
+  "type": "commonjs",
   "dependencies": {
-    "openai": "^6.41.0",
-    "dotenv": "^16.0.0"
+    "dotenv": "^17.4.2"
   }
 }
