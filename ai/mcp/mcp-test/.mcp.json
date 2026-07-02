@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y", 
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/shunwuyu/Desktop/ai_doubao_ysw/ai/mcp/mcp-test"
+      ]
+    }
+  }
+}
