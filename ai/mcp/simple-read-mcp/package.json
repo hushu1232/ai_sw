@@ -1,0 +1,18 @@
+{
+  "name": "simple-read-mcp",
+  "version": "1.0.0",
+  "description": "- server fs 读取文件    - schema 声明 函数名字， 参数 地址   返回 上下文 给llm  - server还要满足mcp 通信协议",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^4.4.3"
+  }
+}
