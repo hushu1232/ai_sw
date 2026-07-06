@@ -42,3 +42,36 @@ Agent 其实也不复杂， llm本身也可以思考，规划，给它用Tool �
 - langchain   js 
 - langgraph
 - MCP\RAG\SKill 
+
+## langchain 
+- LLM 
+  统一且兼容 chatOpenAI 
+  @langchain/openai 
+  按需加载的llm 
+- Tool 
+  langchain 又来接管 @langchain/core zod 验证工具
+  tool opanai 接口 里有描述和格式的约束
+  - 2个部分 （异步）处理函数  
+    函数描述对象
+    description 详细功能，覆盖场景， 参数需求
+    schema  参数约束 tool 与 llm 要调用此工具， 必须提供schema 约定的参数
+- tool 的 返回格式
+  - llm 有自知之明 ， 当要调用tool 的时候，不生成，停下来告诉用户
+  tool_calls 要调用的工具列表
+  id, name, arguments  多个工具 id 关联等下tool 函数调用
+  结果 需要历史会话列表 才能组成完整的任务上下文
+  tool 异步的， llm 哪个任务细节由哪个工具执行了， id 关联
+  llm 基于自然语言
+
+## llm TOOL 性能
+- llm 任务复杂 可能调用多个tool, 或每个tool 调用多次
+- Promise.all static 方法 **并行执行**多个Promise， 等待所有Promise 都完成， 才返回结果
+  - Promise es6 提供的异步语法 三种状态
+    - Pending 等待中...
+    - resolve() 成功 Pending -> Fullfilled 
+    - reject() 失败 Pending -> Rejected
+    只能从pending -> Fullfilled 或 Rejected 之一， 而且不能再变了
+  - await es8 最优雅的异步变同步语法
+  - Promise.all([promise数组]) 并行执行多个任务， 等待所有任务 都完成， 才返回结果，结果顺序与promise顺序一致。
+
+  即将打造高性能的第一个Agent 
