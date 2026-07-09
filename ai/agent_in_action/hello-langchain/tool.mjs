@@ -64,7 +64,7 @@ const messages = [
 ];
 
 let response = await modelWithTools.invoke(messages);
-// console.log(JSON.stringify(response));
+console.log(JSON.stringify(response));
 messages.push(response);
 // 多个工具 await read  await write 并发？ 
 
